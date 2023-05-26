@@ -14,16 +14,16 @@ import { toast } from "react-hot-toast";
 type Variant = 'LOGIN' | 'REGISTER';
 
 const AuthForm = () => {
-    //   const session = useSession();
+    const session = useSession();
     const router = useRouter();
     const [variant, setVariant] = useState<Variant>('LOGIN');
     const [isLoading, setIsLoading] = useState(false);
 
-    //   useEffect(() => {
-    //     if (session?.status === 'authenticated') {
-    //       router.push('/conversations')
-    //     }
-    //   }, [session?.status, router]);
+    useEffect(() => {
+        if (session?.status === 'authenticated') {
+            router.push('/users');
+        }
+    }, [session?.status, router]);
 
     const toggleVariant = useCallback(() => {
         if (variant === 'LOGIN') {
@@ -52,10 +52,10 @@ const AuthForm = () => {
         console.log(data);
         if (variant === 'REGISTER') {
             axios.post('/api/register', data)
-                //   .then(() => signIn('credentials', {
-                //     ...data,
-                //     redirect: false,
-                //   }))
+                  .then(() => signIn('credentials', {
+                    ...data,
+                    redirect: false,
+                  }))
                 //   .then((callback) => {
                 //     if (callback?.error) {
                 //       toast.error('Invalid credentials!');
@@ -80,7 +80,7 @@ const AuthForm = () => {
                     }
 
                     if (callback?.ok && !callback?.error) {
-                        //   router.push('/conversations')
+                        router.push('/users')
                         toast.success('Logged in!');
                     }
                 })
