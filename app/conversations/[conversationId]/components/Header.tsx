@@ -11,7 +11,7 @@ import { Conversation, User } from "@prisma/client";
 import Avatar from "@/app/components/Avatar";
 import AvatarGroup from "@/app/components/AvatarGroup";
 import useOtherUser from '@/app/hook/useOtherUser';
-// import ProfileDrawer from "./ProfileDrawer";
+import ProfileDrawer from "./ProfileDrawer";
 
 interface HeaderProps {
     conversation: Conversation & {
@@ -25,21 +25,21 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
 
     //   const { members } = useActiveList();
     //   const isActive = members.indexOf(otherUser?.email!) !== -1;
-      const statusText = useMemo(() => {
+    const statusText = useMemo(() => {
         if (conversation.isGroup) {
-          return `${conversation.users.length} members`;
+            return `${conversation.users.length} members`;
         }
 
-        return  'Active';
-      }, [conversation]);
+        return 'Active';
+    }, [conversation]);
 
     return (
         <>
-            {/* <ProfileDrawer 
-      data={conversation} 
-      isOpen={drawerOpen} 
-      onClose={() => setDrawerOpen(false)}
-    /> */}
+            <ProfileDrawer
+                data={conversation}
+                isOpen={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+            />
             <div
                 className="bg-white w-full flex border-b-[1px] sm:px-4 py-3 px-4 lg:px-6 justify-between items-center shadow-sm"
             >
