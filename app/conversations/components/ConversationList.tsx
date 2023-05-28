@@ -52,7 +52,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 }
 
                 return currentConversation;
-            }));
+            }));    
         }
 
         const newHandler = (conversation: FullConversationType) => {
